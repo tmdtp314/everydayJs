@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+#temp { font-size: 80px; letter-spacing: -7px; }
+
+
+#weather{font-size: 80px; letter-spacing: -7px;}
+        body {
+          background-color: peru;
+        }
+         
+        .js-weather {
+          margin-left: 30px;
+          color: white;
+          font-size: 40px;
+        }
+        
+            </style>
+            <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function(){
+
+ 
+});
+
+   // const weather = document.querySelector("#date");
+ 
+  const API_KEY = "619d3cd93ccb9cf3677c8fc409406010";
+ const COORDS = "coords";
+ 
+function init(){
+
+    getData();
+  
+}
+
+init();
+
+function getData() { 
+    fetch( `http://api.openweathermap.org/data/2.5/weather?q=seoul&appid=${API_KEY}`) // Promise<Response>반환 -> res로 전달 
+    .then(function(res) { return res.json() // json() 메서드 적용 -> json으로 전달
+     }) 
+    .then(function(json) { renderWeatherData(json); // json형태의 데이터를 다른함수로 넘겨줌
+     }).catch(error=>console.log(error));
+     
+    
+    } 
+function renderWeatherData(data) {
+
+  
+     let now = new Date(); 
+
+     console.log(data);
+
+
+     date.textContent = `${moment(now).format(`dddd, Do MM YYYY`)}`;
+     temp.textContent = `${Math.round(Number(data.main.temp) - 273.15)}°C`;
+     weather_state.textContent =`${data.weather[0].main}`;
+
+
+       }
+
+   
+</script>
+
+
+
+
+</head>
+
+<body>
+    <p>오늘의 날씨<span id="date"></span><br>
+                 <span id="temp"></span><br>
+                 <span id="weather_state"></span>                
+    </p>
+  
+
+
+
+</body>
+</html>
