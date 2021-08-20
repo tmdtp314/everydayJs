@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<input type="text" placeholder="write here" id="aaa"/>
+
+<input type="text" id="bbb"/>
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+    var phoneNM = ""
+ 
+    $( document ).ready(function() {
+var number = '062-675-5093'
+var result = number.replaceAll('-',"")
+console.log(result)
+var result2 = getBytes(result)
+alert(result2)
+   
+
+});
+
+
+  $(document).on('keyup', '#aaa', function(e){
+   var aaa = $(this).val()
+    $('#bbb').val(getBytes(aaa))   
+   
+});
+ 
+
+function getBytes(result){
+    var result2=""
+ 
+    if(result!=null){
+        if(result.length>10){
+    result2 += result.substr(0,3)
+    result2 +='-'
+    result2 += result.substr(3,4)
+    result2 +='-'
+    result2 += result.substr(7) 
+   }
+   else {
+    result2 += result.substr(0,3)
+    result2 +='-'
+    result2 += result.substr(3,3)
+    result2 +='-'
+    result2 += result.substr(6) 
+   }
+   
+    }
+   // var cnt = 0;
+   // for(var i =0; i<str.length;i++) {
+   //     cnt += (str.charCodeAt(i) >128) ? 2 : 1;
+   // }
+    return result2;
+}
+
+
+    
+    </script>
+</body>
+</html>

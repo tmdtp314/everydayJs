@@ -77,4 +77,4 @@ def val_check_inner(pwd):
         return False
     
 
-val_check_inner('Aa314*')
+val_check_inner('tmdtp314A*')
