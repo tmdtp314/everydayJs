@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>EVERDEVEL - JavaScript - checkbox</title>
+
+</head>
+<body>
+    <label for="checked">checked</label>
+    <input type="checkbox" id="chkAll" checked onclick="CheckAll(this)"/>
+    <label for="unchecked">unchecked</label>
+    <input type="checkbox" id="unchecked" />
+
+
+    <table cellspacing="0" rules="all"  id="Table1" style="border-collapse: collapse;">
+        <tr>
+            <th>&nbsp;</th>
+            <th style="width:80px">Customer Id</th>
+            <th style="width:120px">Name</th>
+            <th style="width:120px">Country</th>
+        </tr>
+        <tr>
+            <td><input class="chkbx" type="checkbox"/></td>
+            <td>1</td>
+            <td>John Hammond</td>
+            <td>United States</td>
+        </tr>
+        <tr>
+            <td><input class="chkbx" type="checkbox"/></td>
+            <td>2</td>
+            <td>Mudassar Khan</td>
+            <td>India</td>
+        </tr>
+        <tr>
+            <td><input class="chkbx" type="checkbox"/></td>
+            <td>3</td>
+            <td>Suzanne Mathews</td>
+            <td>France</td>
+        </tr>
+        <tr>
+            <td><input class="chkbx" type="checkbox"/></td>
+            <td>4</td>
+            <td>Robert Schidner</td>
+            <td>Russia</td>
+        </tr>
+    </table>
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+ <script type="text/javascript">
+
+$(document).ready(function () {
+  
+ var checked = $('#checked').val();
+ var checked2 = $(this).is(':checked');
+ console.log(checked2)
+});
+
+/*$(function () {  
+        $("#checked").on("click", ".chkbx2", function (e) {
+
+            var checked = $(this).is(':checked');
+            var grid = $("#grid").data().kendoGrid;
+            var dataItem = grid.dataItem($(this).closest('tr'));
+            if (checked == true) {
+                dataItem.set('RUN_27', 'Y');
+            } else {
+                dataItem.set('RUN_27', 'N');
+            }
+        })
+    })*/
+
+
+ $("#Table1").on("click", ".chkbx", function () {
+
+    
+
+//var checked = $(this).is(':checked');
+//var grid = $("#grid").data().kendoGrid;
+//var dataItem = grid.dataItem($(this).closest('tr'));
+//dataItem.set('CHK', checked);
+
+})
+
+    
+    $("#chkAll").change(function () {
+      /*  var checked = $('#chkAll').val();
+        var checked2 = $(this).is(':checked');     
+        console.log(checked2); //true or false반환*/
+
+        CheckAll('Table1');
+
+    });
+
+
+
+
+
+    //function CheckAll(tblName, headChk, bodyChk) 
+    function CheckAll() {
+        const chkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        chkboxes.forEach((chk)=>{chk.checked=CheckAll.checked})
+      
+
+}
+
+
+      
+ </script>
+
+
+
+</body>
+</html>
