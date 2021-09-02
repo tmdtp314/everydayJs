@@ -86,3 +86,28 @@ music("음악");
           
         
    ```
+   function book(){
+    function get(){
+        return point;
+    };
+    var point = 123;
+   return get();
+   };
+   book();
+   ```
+   FO book 생성, 스코프  설정
+   book() 실행
+   실행콘텍스트
+   렉시칼환경
+     -환경 get FO,point(undefined)
+     -외부 x
+   실행 : point=123, return get();
+   get 함수 호출
+     -환경
+     -외부 point=123
+    실행 return point
+    console.log(123)
+   
+
+
+   ```
