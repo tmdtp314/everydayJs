@@ -35,11 +35,29 @@ getPoint()호출
 
 /*
 
-        this로 인스턴스 참조 
+      ✔this로 인스턴스 참조 
 
     - this를 이용하여, 메소드를 호출한 인스턴스 참조
     - var obj = new Book();
       obj.get()를 호출하면 get메소드 안에서 this로 obj를 참조한다
-      
+      (즉, get앞에 있는 obj를 참조한다)
+
+     ✔인스턴스안에서 메소드를 호출하는 방법
+       - Book.prototype에 연결된 메소드가 __proto__에 설정되면 인스턴스 프로퍼티가 된다.
+       - this.prototype.setPoint()형태가 아닌 this.setPoint()형태로 호출 
+         이 때 this는 obj를 참조한다. 
 
 */
+
+function Book(){
+  console.log("1:",this.point);
+}
+Book.prototype.getPoint=function(){
+  this.setPoint();
+  console.log("2: ",this.setPoint);
+};
+Book.prototype.setPoint=function(){
+  this.point=100;
+};
+var obj=new Book();
+obj.getPoint();
