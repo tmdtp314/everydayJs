@@ -43,7 +43,22 @@ obj.getPoint();
 /*
      1. function Book2(point) {}
          Book2 오브젝트 생성
-     2. 
+     2. Book2.prototype에다가 getPoint메소드 연결
+     3. new Book2으로 인스턴스 생성, obj에 할당
+        - 인스턴스를 생성하면 prototype에 연결된 메소드를
+          인스턴스.메소드이름() 형태로 호출한다.
+        - obj:{
+            point: 100,
+            __proto__ = {
+
+              constructor : Book2,
+              getPoint: function(){}
+            }
+
+
+        }
+     4. obj.getPoint()호출
+        = obj.__proto__.getPoint() 로 호출가능
 
 
 */
