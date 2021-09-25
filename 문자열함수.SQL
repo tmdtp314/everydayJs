@@ -1,0 +1,5 @@
+-- IIF()
+SELECT IIF(100>200, 'TRUE','FALSE') -- 틀리다
+
+-- CONCAT() 문자열 합치기
+SELECT CONCAT('SQL ','SERVER ','2016')  -- SQL SERVER 2016
