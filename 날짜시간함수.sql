@@ -1,0 +1,12 @@
+-- DATEADD()  날짜에 더한 값을 돌려준다
+SELECT DATEADD(day,100,'2021-09-25')
+SELECT DATEADD(minute,2,GETDATE())
+
+-- DATENAME() 날짜의 지정한 부분만 돌려줌
+SELECT DATENAME(WEEKDAY,'2021-09-25')
+
+-- DATEDIFF 두 날짜 차이 
+SELECT DATEDIFF(WEEK, GETDATE(),'20220923')
+
+-- EOMONTH() 
+SELECT EOMONTH(GETDATE(),3) -- 오늘 날짜에서 3개월 후의 마지막 날짜를 돌려줌

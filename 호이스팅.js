@@ -29,13 +29,18 @@ book = function(){              //이미 존재하니까 초기화 하지않는�
     return "함수 표현식"
 };
 //////////////////////////////
+```
+       ※ 실행콘텍스트가 생성될때 즉 book() 이 때, " 초기화 -> 값 할당" 이 이루어진다.
+          초기화 때 "기존 FO에 값이 할당되있는 경우 변수값의 초기화가 안 이루어지는" 것이지
+          실행해서 값 할당할 경우 변수에 새로운 FO가 값으로 할당이 된다!!!
+```
 
 function book(){
-    function getBook(){
+    function getBook(){         
         return "책1";                             
-    };
-    console.log(getBook());
-    function getBook(){
+    };                                // FO getBook() 책1 -> getBook()책2 -> 실행(console.log): 책2
+    log(getBook());
+    function getBook(){ 
         return "책2";
     };
 
@@ -44,12 +49,50 @@ book();   //실행결과 ---> 책2
 
 
 /////////////////////////////
-var book1=function(){
-    return "책1";
+
+function book1(){
+
+    var getbook1=function(){
+        return "책1";
+    }
+    console.log(getbook1());                   //getbook1 = undefined -> getbook1 =undefined -> "책1" -> 실행 console.log: 책1
+    var getbook1=function(){
+        return "책2";
+    }
+    
 }
-console.log(book1);
-var book1=function(){
-    return "책2"
-}
+book1();
+
+
 
 ////////////////////////
+function book2(){
+    function getbook2(){
+        return "책1"
+    }                                     // FO book2():"책1" -> book2 = "책1" -> console.log : "책1" 
+    console.log(getbook2())
+    var getbook2 = function(){
+        return "책2"
+    }
+}
+book2();
+
+
+//////////////////////////
+function book3(){
+    var getbook3 = function(){
+        return "책1";
+    }
+    console.log(getbook3());                  //FO getbook3 = "책2" -> getbook3 = "책2" -> book3()-> getbook3 = "책1" -> console.log : "책1"
+    function getbook3(){
+        return "책2";
+    }
+}
+book3();
+/////////////////////////////
+
+
+
+
+
+
