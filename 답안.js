@@ -225,7 +225,9 @@ book();
 
 - getBook에 새로운 function 오브젝트를 할당합니다.
 
-- console.log(getBook())를 만나, getBook() 함수를 호출합니다.
+- console.log(getBook())를 만나, getBook() 함수를 호출합니다. 
+
+- 함수가 실행되고 getBook 에는 one이라는 값이 할당 
 
 - getBook() 함수는 one을 반환합니다.
 

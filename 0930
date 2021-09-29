@@ -1,0 +1,36 @@
+WITH CTE(WKSM_01) 
+	  AS (SELECT WKSM_01 
+	        FROM T_WKSM,NSADMIN0.DBO.T_MEM M2 
+		   WHERE WKSM_02 = M2.MEM_01 
+		     AND (@WKS_98='' OR WKSM_02 LIKE '%'+ @WKS_98+'%'))
+  
+
+
+
+      SELECT dbo.FN_DATE(T_WKS.WKS_02, '1') AS WKS_02
+		      ,dbo.FN_DATE(T_WKS.WKS_06, '1') AS WKS_06
+		      ,T_WKS.*  
+              ,M.MEM_02
+			  ,PCB_02 AS MEM_32_NM
+			  ,dbo.FN_WKSM_COLOR(@WKS_ID,WKS_01) as WKSM_LIST
+			
+
+          FROM T_WKS  
+               INNER JOIN NSADMIN0.dbo.T_MEM M  
+                ON WKS_ID = M.MEM_CID  
+               AND WKS_98 = M.MEM_01  
+			   LEFT OUTER JOIN NSADMIN0.DBO.T_PCB F
+                 ON WKS_ID = F.PCB_CID
+                AND M.MEM_32 = F.PCB_01  
+			   LEFT OUTER JOIN (SELECT A.WKSM_01,A.WKSM_02 FROM T_WKSM A,NSADMIN0.DBO.T_MEM M2 WHERE A.WKSM_02 = M2.MEM_02 AND M2.MEM_CID = WKSM_ID) C
+			     ON C.WKSM_01 = WKS_01			 
+               
+         WHERE WKS_ID = @WKS_ID  	
+           AND (@WKS_03 = '' OR WKS_03 = @WKS_03)   --구분  
+           AND (@WKS_05 = '' OR WKS_05 = @WKS_05)   --분류(DDL)  
+           AND (@WKS_04 ='' OR WKS_04 LIKE '%' + @WKS_04 + '%' )     --업무내용  
+           AND ((M.MEM_02 LIKE '%' + @WKS_1001 + '%') OR (PCB_02 LIKE'%'+@WKS_1001+'%'))    --요청자  
+		--   AND (@WKS_98 = '' OR C.WKSM_02 LIKE '%'+@WKS_98+'%' OR M.MEM_02 LIKE '%'+ @WKS_98+'%') -- 담당자
+		AND WKS_01 IN (SELECT WKSM_01 FROM CTE)
+	   
+         ORDER BY WKS_01 DESC   
